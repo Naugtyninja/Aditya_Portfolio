@@ -53,7 +53,7 @@
   nav a{color:var(--ink-soft); text-decoration:none; font-size:14.5px; font-weight:600; transition:color 0.15s ease;}
   nav a:hover, nav a:focus-visible{color:var(--coral);}
 
-  /* ---------- hero ------------ */
+  /* ---------- hero ---------- */
   .hero{padding:80px 0 60px; position:relative; overflow:hidden;}
   .hero-blob{
     position:absolute; border-radius:50%; filter:blur(0px); opacity:0.55; z-index:0;
@@ -170,6 +170,10 @@
     .project-visual{width:100%; margin-top:4px;}
   }
   .project-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px;}
+  .project-list{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px; padding-left:20px;}
+  .project-list li{margin-bottom:10px;}
+  .project-list li:last-child{margin-bottom:0;}
+  .project-list li::marker{color:var(--coral); font-weight:700;}
   .build-log{
     background:#FBF6EC; border:1.5px solid var(--border); border-radius:14px;
     padding:16px 18px; margin-bottom:18px;
@@ -231,16 +235,24 @@
     100%{transform:rotate(360deg);}
   }
 
-  .susp-wheel{animation:susp-travel 1.8s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
+  .susp-wheel{animation:susp-travel 1.7s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
   @keyframes susp-travel{
     0%,100%{transform:translateY(0);}
-    50%{transform:translateY(9px);}
+    50%{transform:translateY(-9px);}
   }
-  .susp-damper{animation:susp-damper-squeeze 1.8s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
-  @keyframes susp-damper-squeeze{
+  .susp-rod{animation:susp-rod-compress 1.7s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
+  .susp-coil{animation:susp-rod-compress 1.7s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
+  @keyframes susp-rod-compress{
     0%,100%{transform:scaleY(1);}
-    50%{transform:scaleY(0.82);}
+    50%{transform:scaleY(0.76);}
   }
+  .susp-shadow{animation:susp-shadow-pulse 1.7s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 50%;}
+  @keyframes susp-shadow-pulse{
+    0%,100%{opacity:0.22; transform:scaleX(1);}
+    50%{opacity:0.09; transform:scaleX(0.65);}
+  }
+  .wheel-spin{animation:wheel-spin-rotate 1s linear infinite; transform-box:fill-box; transform-origin:50% 50%;}
+  @keyframes wheel-spin-rotate{ to{transform:rotate(360deg);} }
 
   /* ---------- achievements ---------- */
   .cred-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
@@ -585,7 +597,6 @@
           display output.
         </p>
         <div class="stack-row">
-          <span class="stack-chip">Jan — Mar 2026</span>
           <span class="stack-chip">Verilog RTL</span>
           <span class="stack-chip">FSM Design</span>
           <span class="stack-chip">Quartus</span>
@@ -680,16 +691,24 @@
       </div>
       <div class="project-body">
         <div class="project-visual" aria-hidden="true">
-          <svg viewBox="0 0 100 110" width="90" height="98" xmlns="http://www.w3.org/2000/svg">
-            <line x1="18" y1="18" x2="18" y2="70" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
-            <line x1="18" y1="20" x2="55" y2="34" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+          <svg viewBox="0 0 120 108" width="100" height="90" xmlns="http://www.w3.org/2000/svg">
+            <line x1="8" y1="98" x2="112" y2="98" stroke="var(--border)" stroke-width="3" stroke-dasharray="5 5"/>
+            <rect x="6" y="14" width="10" height="58" rx="3" fill="var(--ink)"/>
+            <path d="M16,20 L61,34 L16,32 Z" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="61" cy="34" r="3" fill="var(--blue)" stroke="var(--ink)" stroke-width="1.2"/>
+            <path class="susp-coil" d="M35,25 L42,29 L34,33 L42,37 L34,41 L42,45 L34,49 L42,53 L34,57 L39,60" fill="none" stroke="var(--coral)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+            <line class="susp-rod" x1="61" y1="34" x2="61" y2="74" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
             <g class="susp-wheel">
-              <line x1="18" y1="55" x2="55" y2="65" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
-              <circle cx="55" cy="65" r="3.5" fill="var(--ink)"/>
-              <ellipse cx="74" cy="60" rx="12" ry="26" fill="none" stroke="var(--ink)" stroke-width="5"/>
-              <ellipse cx="74" cy="60" rx="5" ry="11" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+              <ellipse class="susp-shadow" cx="61" cy="97" rx="16" ry="3" fill="var(--ink)"/>
+              <path d="M16,66 L61,74 L16,76 Z" fill="var(--cream-card)" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/>
+              <g class="wheel-spin">
+                <circle cx="61" cy="74" r="18" fill="none" stroke="var(--ink)" stroke-width="6"/>
+                <circle cx="61" cy="74" r="3" fill="var(--ink)"/>
+                <circle cx="61" cy="74" r="9" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+                <line x1="61" y1="60" x2="61" y2="88" stroke="var(--ink)" stroke-width="1.4"/>
+                <line x1="47" y1="74" x2="75" y2="74" stroke="var(--ink)" stroke-width="1.4"/>
+              </g>
             </g>
-            <line class="susp-damper" x1="34" y1="24" x2="46" y2="60" stroke="var(--coral)" stroke-width="4" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="project-content">
@@ -734,19 +753,22 @@
           <div class="project-title">🧪 Lead Test & Systems Integration Engineer</div>
           <div class="project-meta">Esmito Solutions</div>
         </div>
-        <span class="status-pill pill-verified">✓ Completed</span>
+        <span class="status-pill pill-verified">📅 Nov 2022 — Mar 2024</span>
       </div>
       <div class="project-body">
-        <p class="project-desc">
-          Led Battery Management System firmware and hardware testing — designed and built
-          Hardware-in-the-Loop (HIL) test benches for BMS validation and ran hands-on hardware
-          debugging across test cycles.
-        </p>
+        <ul class="project-list">
+          <li>Developed DFMEA-driven validation strategies for battery electronics, reducing service diagnostics time by 40%.</li>
+          <li>Designed and developed an automated Hardware-in-the-Loop (HIL) validation platform using STM32 and CAN communication for Battery Management System firmware, reducing regression testing time by 60%.</li>
+          <li>Led system-level verification and functional safety validation of Li-ion battery packs and BMS against AIS-156 requirements, maintaining requirements traceability and configuration control.</li>
+          <li>Led a multidisciplinary team of four engineers across testing, service, and new product development while coordinating activities between firmware, electronics, mechanical, and systems engineering teams.</li>
+        </ul>
         <div class="stack-row" style="margin-bottom:0;">
-          <span class="stack-chip">Nov 2022 — Mar 2024</span>
-          <span class="stack-chip">BMS Firmware</span>
+          <span class="stack-chip">DFMEA</span>
           <span class="stack-chip">HIL Testing</span>
-          <span class="stack-chip">Hardware Debug</span>
+          <span class="stack-chip">CAN Bus</span>
+          <span class="stack-chip">AIS-156</span>
+          <span class="stack-chip">Functional Safety</span>
+          <span class="stack-chip">Team Leadership</span>
         </div>
       </div>
     </div>
@@ -757,20 +779,21 @@
           <div class="project-title">🔋 Testing &amp; Integration Engineer</div>
           <div class="project-meta">Grinntech Motors and Services</div>
         </div>
-        <span class="status-pill pill-verified">✓ Completed</span>
+        <span class="status-pill pill-verified">📅 Sep 2021 — Nov 2022</span>
       </div>
       <div class="project-body">
-        <p class="project-desc">
-          Owned DVP&amp;R and FMEA testing plans for vehicle-level Li-ion battery integration,
-          connected packs to motor and vehicle electronics over CAN, and led complete AIS 156
-          regulatory certification and documentation — contributing to a 20% reduction in battery losses.
-        </p>
+        <ul class="project-list">
+          <li>Performed system-level integration of battery packs, BMS hardware, sensors, and embedded firmware while collaborating with mechanical, electronics, and control engineers.</li>
+          <li>Improved battery system performance by 20% through rigorous testing development, and structured validation.</li>
+          <li>Developed standardized product integration and test SOPs for Battery, BMS, and sensors, reducing critical product failures to under 2% through continuous improvement.</li>
+          <li>Diagnosed hardware circuit-level debugging, PCB rework, oscilloscope measurements, and root-cause analysis.</li>
+        </ul>
         <div class="stack-row" style="margin-bottom:0;">
-          <span class="stack-chip">Sep 2021 — Nov 2022</span>
           <span class="stack-chip">CAN Bus</span>
-          <span class="stack-chip">DVP&amp;R</span>
-          <span class="stack-chip">FMEA</span>
-          <span class="stack-chip">AIS 156</span>
+          <span class="stack-chip">System Integration</span>
+          <span class="stack-chip">PCB Rework</span>
+          <span class="stack-chip">Root-Cause Analysis</span>
+          <span class="stack-chip">Standardized SOPs</span>
         </div>
       </div>
     </div>
@@ -781,16 +804,13 @@
           <div class="project-title">🔬 R&amp;D Intern</div>
           <div class="project-meta">Inverted Energy</div>
         </div>
-        <span class="status-pill pill-verified">✓ Completed</span>
+        <span class="status-pill pill-verified">📅 Dec 2020 — Feb 2021</span>
       </div>
       <div class="project-body">
         <p class="project-desc">Early-stage research and development support.
         Determined heat generation during charging and discharging of LFP cells. 
         Conducted thermal modeling of Li-ion cells, with a strong understanding of thermal management strategies. 
         </p>
-        <div class="stack-row" style="margin-bottom:0;">
-          <span class="stack-chip">Dec 2020 — Feb 2021</span>
-        </div>
       </div>
     </div>
 
@@ -800,16 +820,12 @@
           <div class="project-title">⚙️ Product Development Intern</div>
           <div class="project-meta">Drop Technologies</div>
         </div>
-        <span class="status-pill pill-verified">✓ Completed</span>
+        <span class="status-pill pill-verified">📅 Oct 2020 — Nov 2020</span>
       </div>
       <div class="project-body">
-        <p class="project-desc">Short-term product development internship.</p>
         <p class="project-desc">
         Worked as a design engineer in an early-stage startup. Assisted in the development of prototypes and test plans for a smart package delivery box. 
         Performed mechanical design calculations, analysis, and material selection for a product.</p>
-        <div class="stack-row" style="margin-bottom:0;">
-          <span class="stack-chip">Oct 2020 — Nov 2020</span>
-        </div>
       </div>
     </div>
 
@@ -850,15 +866,12 @@
           <div class="project-title">🏛️ B.Tech, Mechanical Engineering</div>
           <div class="project-meta">Indian Institute of Technology (IIT), Mandi</div>
         </div>
-        <span class="status-pill pill-verified">✓ Completed</span>
+        <span class="status-pill pill-verified">📅 2017 — 2021</span>
       </div>
       <div class="project-body">
         <p class="project-desc">
            Robotics & Control, Battery Management Systems, E-Powertrain, Vehicle Dynamics, Signals & Systems, Thermodynamics, Fluid Mechanics. 
         </p>
-        <div class="stack-row" style="margin-bottom:0;">
-          <span class="stack-chip">2017 — 2021</span>
-        </div>
       </div>
     </div>
 
