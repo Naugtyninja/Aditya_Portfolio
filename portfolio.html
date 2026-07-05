@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Nautiyal — Mechatronics & Embedded Systems Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FFF9F0;
+    --cream-card: #FFFFFF;
+    --ink: #1F2933;
+    --ink-soft: #5A6470;
+    --ink-faint: #9AA1AA;
+    --coral: #FF6B5C;
+    --coral-soft: #FFE3DE;
+    --blue: #3D7DFF;
+    --blue-soft: #E3ECFF;
+    --yellow: #FFC94B;
+    --yellow-soft: #FFF3D9;
+    --green: #2FB88A;
+    --green-soft: #DCF5EC;
+    --border: #EDE6D8;
+    --sans: 'Inter', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  .wrap{max-width:1060px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- nav ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,249,240,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--ink);
+  }
+  .topbar-inner{display:flex; align-items:center; justify-content:space-between; max-width:1060px; margin:0 auto; padding:16px 28px;}
+  .brand{font-family:var(--display); font-weight:700; font-size:18px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px;}
+  .brand .blob{width:10px; height:10px; border-radius:40% 60% 60% 40%; background:var(--coral); display:inline-block;}
+  nav{display:flex; gap:26px;}
+  nav a{color:var(--ink-soft); text-decoration:none; font-size:14.5px; font-weight:600; transition:color 0.15s ease;}
+  nav a:hover, nav a:focus-visible{color:var(--coral);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:80px 0 60px; position:relative; overflow:hidden;}
+  .hero-blob{
+    position:absolute; border-radius:50%; filter:blur(0px); opacity:0.55; z-index:0;
+  }
+  .blob1{width:340px; height:340px; background:var(--yellow-soft); top:-120px; right:-80px;}
+  .blob2{width:220px; height:220px; background:var(--blue-soft); bottom:-60px; left:-60px;}
+  .hero-inner{position:relative; z-index:1;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--coral);
+    background:var(--coral-soft); border-radius:30px; padding:7px 16px; margin-bottom:24px;
+  }
+  .eyebrow .wave{font-size:15px;}
+  h1{
+    font-family:var(--display); font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(36px, 5.4vw, 56px); line-height:1.08; max-width:760px; color:var(--ink);
+  }
+  h1 .hl{
+    background:linear-gradient(180deg, transparent 58%, var(--yellow) 58%);
+    padding:0 2px;
+  }
+  .hero-sub{margin-top:24px; max-width:560px; font-size:17px; color:var(--ink-soft); line-height:1.65;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--sans); font-weight:700; font-size:14.5px;
+    padding:13px 24px; border-radius:30px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; border:2px solid var(--ink);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary{background:var(--coral); color:#fff;}
+  .btn-primary:hover{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--ink);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--ink); background:var(--yellow-soft);}
+
+  .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:40px;}
+  .info-pill{
+    font-family:var(--sans); font-size:13px; font-weight:600; color:var(--ink);
+    background:var(--cream-card); border:2px solid var(--ink); border-radius:30px;
+    padding:8px 16px; display:flex; align-items:center; gap:7px;
+  }
+  .info-pill .ic{font-size:14px;}
+
+  /* ---------- sections ---------- */
+  section{padding:68px 0;}
+  .sec-head{display:flex; align-items:center; gap:14px; margin-bottom:36px;}
+  .sec-icon{
+    width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:22px; border:2px solid var(--ink); flex-shrink:0;
+  }
+  h2{font-family:var(--display); font-weight:700; font-size:30px; color:var(--ink); letter-spacing:-0.01em;}
+  .sec-sub{font-size:14px; color:var(--ink-faint); margin-top:2px;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:start;}
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr; gap:32px;}}
+  .about-text p{color:var(--ink-soft); font-size:16px; margin-bottom:16px; max-width:480px;}
+  .about-text p strong{color:var(--ink); font-weight:700;}
+
+  .fact-card{
+    background:var(--cream-card); border:2px solid var(--ink); border-radius:18px;
+    padding:22px 24px; box-shadow:4px 4px 0 var(--border);
+  }
+  .fact-row{display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px dashed var(--border);}
+  .fact-row:last-child{border-bottom:none; padding-bottom:0;}
+  .fact-row:first-child{padding-top:0;}
+  .fact-k{font-size:12.5px; color:var(--ink-faint); font-weight:600; text-transform:uppercase; letter-spacing:0.03em;}
+  .fact-v{font-size:14px; color:var(--ink); font-weight:600; text-align:right;}
+
+  /* ---------- skills ---------- */
+  .skill-tiers{display:flex; flex-direction:column; gap:18px;}
+  .tier{border:2px solid var(--ink); border-radius:18px; padding:22px 24px; background:var(--cream-card);}
+  .tier-head{display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;}
+  .tier-tag{font-size:12px; font-weight:700; padding:5px 13px; border-radius:20px;}
+  .tag-verified{background:var(--green-soft); color:#1F7A56;}
+  .tag-working{background:var(--yellow-soft); color:#A6750A;}
+  .tier-title{font-weight:700; font-size:15.5px; color:var(--ink);}
+  .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{
+    font-size:13px; font-weight:600; color:var(--ink);
+    border:1.5px solid var(--border); border-radius:16px; padding:9px 15px 8px;
+    background:#FBF6EC;
+    display:flex; flex-direction:column; align-items:flex-start; gap:5px;
+  }
+  .chip-stars{
+    font-size:13px; letter-spacing:2px; line-height:1;
+  }
+  .chip-stars .on{color:var(--coral);}
+  .chip-stars .off{color:var(--border);}
+
+  /* ---------- projects ---------- */
+  .project-card{
+    border:2px solid var(--ink); border-radius:20px; background:var(--cream-card);
+    margin-bottom:26px; overflow:hidden; box-shadow:5px 5px 0 var(--border);
+  }
+  .project-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:26px 28px 18px; flex-wrap:wrap;}
+  .project-title{font-family:var(--display); font-weight:700; font-size:19.5px; color:var(--ink);}
+  .project-meta{font-size:13px; color:var(--ink-faint); margin-top:6px; font-weight:500;}
+  .status-pill{
+    font-size:12px; font-weight:700; padding:7px 14px; border-radius:30px;
+    white-space:nowrap; display:flex; align-items:center; gap:6px;
+  }
+  .pill-verified{background:var(--green-soft); color:#1F7A56;}
+  .pill-progress{background:var(--yellow-soft); color:#A6750A;}
+
+  .project-body{padding:0 28px 28px;}
+  .project-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px;}
+  .build-log{
+    background:#FBF6EC; border:1.5px solid var(--border); border-radius:14px;
+    padding:16px 18px; margin-bottom:18px;
+  }
+  .build-log .line{display:flex; gap:10px; padding:5px 0; font-size:13.5px; color:var(--ink-soft); align-items:baseline;}
+  .build-log .line .ic-ok{color:#1F7A56; font-weight:700;}
+  .build-log .line .ic-pending{color:#A6750A; font-weight:700;}
+  .project-links{display:flex; gap:12px; flex-wrap:wrap;}
+  .project-links a{
+    font-size:13.5px; font-weight:700; color:var(--ink); text-decoration:none;
+    border:2px solid var(--ink); border-radius:30px; padding:9px 17px;
+    display:inline-flex; align-items:center; gap:7px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .project-links a:hover, .project-links a:focus-visible{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--blue); background:var(--blue-soft);}
+  .stack-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
+  .stack-chip{font-size:12.5px; font-weight:600; color:var(--ink-soft); border:1.5px solid var(--border); border-radius:20px; padding:5px 12px;}
+
+  /* ---------- achievements ---------- */
+  .cred-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  @media (max-width:640px){.cred-grid{grid-template-columns:1fr;}}
+  .cred-card{
+    border:2px solid var(--ink); border-radius:16px; padding:20px 22px; background:var(--cream-card);
+    box-shadow:4px 4px 0 var(--border); display:flex; gap:14px; align-items:flex-start;
+  }
+  .cred-emoji{font-size:24px; flex-shrink:0;}
+  .cred-card .ctitle{font-weight:700; font-size:15px; color:var(--ink); margin-bottom:4px;}
+  .cred-card .cdesc{font-size:13px; color:var(--ink-faint); line-height:1.55;}
+
+  /* ---------- contact ---------- */
+  .contact-grid{display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;}
+  .contact-card{
+    flex:1; min-width:200px; border:2px solid var(--ink); border-radius:18px; padding:22px 24px;
+    background:var(--cream-card); text-decoration:none; box-shadow:4px 4px 0 var(--border);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .contact-card:hover, .contact-card:focus-visible{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--coral);}
+  .contact-card .cic{font-size:22px; margin-bottom:10px; display:block;}
+  .contact-card .clabel{font-size:12px; color:var(--ink-faint); font-weight:700; text-transform:uppercase; letter-spacing:0.03em;}
+  .contact-card .cvalue{font-size:15px; color:var(--ink); margin-top:6px; font-weight:700;}
+
+  footer{padding:40px 0 56px; border-top:2px solid var(--ink); margin-top:20px;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  .foot-text{font-size:13px; color:var(--ink-faint); font-weight:500;}
+
+  ::selection{background:var(--yellow); color:var(--ink);}
+
+  /* ---------- race track ---------- */
+  .race-track-layer{
+    position:absolute; top:0; left:0; width:100%; pointer-events:none; z-index:3; display:none;
+  }
+  #race-track-svg{ position:absolute; top:0; left:0; overflow:visible; display:block; }
+  #race-road-path{
+    fill:none; stroke:var(--ink); stroke-width:22; stroke-linecap:round; stroke-linejoin:round;
+  }
+  #race-road-fill{
+    fill:none; stroke:#EFE9DC; stroke-width:16; stroke-linecap:round; stroke-linejoin:round;
+  }
+  #race-stripe-path{
+    fill:none; stroke:var(--yellow); stroke-width:4; stroke-dasharray:16 18; stroke-linecap:round;
+  }
+  .race-car{
+    position:absolute; top:0; left:0; width:36px; height:58px;
+    will-change:transform; filter:drop-shadow(1px 2px 0 rgba(31,41,51,0.35));
+  }
+  .race-car svg{ display:block; }
+  .race-milestones{ position:absolute; top:0; left:0; }
+  .milestone{
+    position:absolute; width:24px; height:24px; transform:translate(-50%,-62%);
+    filter:drop-shadow(1px 1px 0 rgba(31,41,51,0.3));
+  }
+  .milestone svg{ display:block; }
+  .milestone-finish{ width:30px; height:30px; }
+  @media (max-width:1300px){
+    .race-track-layer{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="race-track-layer" id="race-track-layer" aria-hidden="true">
+  <svg id="race-track-svg" xmlns="http://www.w3.org/2000/svg">
+    <path id="race-road-path" d=""></path>
+    <path id="race-road-fill" d=""></path>
+    <path id="race-stripe-path" d=""></path>
+  </svg>
+  <div class="race-milestones" id="race-milestones"></div>
+  <div class="race-car" id="race-car">
+    <svg viewBox="0 0 36 58" width="36" height="58" xmlns="http://www.w3.org/2000/svg">
+      <!-- front wing -->
+      <rect x="2" y="1" width="3" height="6" rx="1.2" fill="var(--ink)"/>
+      <rect x="31" y="1" width="3" height="6" rx="1.2" fill="var(--ink)"/>
+      <rect x="3" y="2" width="30" height="3" rx="1.5" fill="var(--ink)"/>
+      <!-- nose cone -->
+      <polygon points="15,5 21,5 19.4,15 16.6,15" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+      <!-- front tires -->
+      <rect x="-1" y="7" width="5.5" height="10" rx="2.2" fill="var(--ink)"/>
+      <rect x="31.5" y="7" width="5.5" height="10" rx="2.2" fill="var(--ink)"/>
+      <!-- cockpit / tub -->
+      <rect x="13" y="14" width="10" height="21" rx="3" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+      <!-- driver visor -->
+      <rect x="15" y="17" width="6" height="5.5" rx="2" fill="var(--ink)" opacity="0.75"/>
+      <!-- halo ring -->
+      <ellipse cx="18" cy="21" rx="5" ry="3" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity="0.6"/>
+      <!-- sidepods -->
+      <polygon points="13,25 6,30 6,37 13,39" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+      <polygon points="23,25 30,30 30,37 23,39" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+      <!-- rear tires -->
+      <rect x="-1.5" y="35" width="6.5" height="13.5" rx="2.6" fill="var(--ink)"/>
+      <rect x="31" y="35" width="6.5" height="13.5" rx="2.6" fill="var(--ink)"/>
+      <!-- engine cover -->
+      <rect x="14" y="34" width="8" height="18" rx="3" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+      <!-- center racing stripe -->
+      <rect x="16.5" y="6" width="3" height="46" fill="var(--yellow)" opacity="0.9"/>
+      <!-- rear wing -->
+      <rect x="4" y="52" width="28" height="3.5" rx="1.5" fill="var(--ink)"/>
+      <rect x="3" y="50" width="3" height="7" rx="1.2" fill="var(--ink)"/>
+      <rect x="30" y="50" width="3" height="7" rx="1.2" fill="var(--ink)"/>
+    </svg>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top"><span class="blob"></span>Aditya Nautiyal</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Industry Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow"><span class="wave">👋</span> Mechatronics & Embedded Systems Engineer</div>
+    <h1>Engineer at the intersection of <span class="hl">embedded systems and intelligent hardware.</span></h1>
+    <p class="hero-sub">
+      I work across embedded, and mechanical systems — from
+      register level drivers to larger EVs battery packs.
+      
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">See my work →</a>
+      <a class="btn btn-ghost" href="#contact">Say hello</a>
+    </div>
+    <div class="pill-row">
+      <span class="info-pill"><span class="ic">🎓</span> IIT Mandi → University of Leeds</span>
+      <span class="info-pill"><span class="ic">🔋</span> Embedded · Li-ion · Mechatronics</span>
+      <span class="info-pill"><span class="ic">✅</span> Open to opportunities</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--coral-soft);">🙋</div>
+      <div>
+        <h2>About me</h2>
+        <div class="sec-sub">The short version</div>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Aditya</strong> — a multidisciplinary engineer working at the intersection of
+        embedded systems, mechanical design, and lithium-ion battery technology.</p>
+        <p>My background spans full-vehicle battery integration in EV startups, and embedded firmware development for microcontrollers, and mechanical design and analysis.</p>
+        <p>I'm currently completing an MSc in Mechatronics & Robotics Engineering at the
+        <strong>University of Leeds</strong>, building on a B.Tech in Mechanical Engineering from
+        <strong>IIT Mandi</strong>
+      </div>
+      <div class="fact-card">
+        <div class="fact-row"><span class="fact-k">Based in</span><span class="fact-v">UK / India</span></div>
+        <div class="fact-row"><span class="fact-k">MSc</span><span class="fact-v">Mechatronics — Leeds, 2026</span></div>
+        <div class="fact-row"><span class="fact-k">B.Tech</span><span class="fact-v">Mechanical — IIT Mandi, 2021</span></div>
+        <div class="fact-row"><span class="fact-k">Experience</span><span class="fact-v">~2.5 yrs industry</span></div>
+        <div class="fact-row"><span class="fact-k">Sector</span><span class="fact-v">EV / Li-ion battery</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--blue-soft);">🛠️</div>
+      <div>
+        <h2>Skills</h2>
+        <div class="sec-sub">Sorted by how much proof backs them up</div>
+      </div>
+    </div>
+    <div class="skill-tiers">
+      <div class="tier">
+        <div class="tier-head">
+          <span class="tier-tag tag-verified">✓ Demonstrated</span>
+          <span class="tier-title">Backed by shipped code, hardware, or certification work</span>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Embedded C<span class="chip-stars"><span class="on">★★★★</span></span></span>
+          <span class="chip">STM32 HAL<span class="chip-stars"><span class="on">★★★</span></span></span>
+          <span class="chip">Git / GitHub<span class="chip-stars"><span class="on">★★★</span><span class="off">★</span></span></span>
+          <span class="chip">DVP&amp;R / FMEA<span class="chip-stars"><span class="on">★★★★</span><span class="off">★</span></span></span>
+          <span class="chip">CAN Bus Integration<span class="chip-stars"><span class="on">★★★★</span><span class="off">★</span></span></span>
+          <span class="chip">HIL Testing<span class="chip-stars"><span class="on">★★★★★</span></span></span>
+          <span class="chip">SolidWorks<span class="chip-stars"><span class="on">★★★★</span><span class="off">★</span></span></span>
+        </div>
+      </div>
+      <div class="tier">
+        <div class="tier-head">
+          <span class="tier-tag tag-working">◐ Building up</span>
+          <span class="tier-title">From coursework and active project development</span>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Edge Impulse / TinyML<span class="chip-stars"><span class="on">★★</span><span class="off">★★★</span></span></span>
+          <span class="chip">DMA Programming<span class="chip-stars"><span class="on">★★★</span><span class="off">★★</span></span></span>
+          <span class="chip">FPGA Design<span class="chip-stars"><span class="on">★★★</span><span class="off">★★</span></span></span>
+          <span class="chip">MATLAB<span class="chip-stars"><span class="on">★★★</span><span class="off">★★</span></span></span>
+          <span class="chip">Ansys<span class="chip-stars"><span class="on">★★★</span><span class="off">★★</span></span></span>
+          <span class="chip">BMS Firmware<span class="chip-stars"><span class="on">★★★</span><span class="off">★★</span></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--yellow-soft);">🚀</div>
+      <div>
+        <h2>Personal projects</h2>
+        <div class="sec-sub">What I've built on my own time</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🪰 Flapping-Wing Microrobot Design (&lt;2g)</div>
+          <div class="project-meta">MSc Project, University of Leeds · Ansys Maxwell · FPCB Actuator</div>
+        </div>
+        <span class="status-pill pill-progress">📍 Ongoing</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Designing and simulating an electromagnetic flapping-wing actuator for a sub-2g microrobot
+          using Ansys Maxwell. Developed a flexible PCB (FPCB) coplanar spiral-coil actuator optimized
+          for force-to-weight performance, and built a working prototype achieving over 100 mN of
+          actuation force, a flapping frequency above 20 Hz, and measurable lift.
+        </p>
+        <div class="stack-row">
+          <span class="stack-chip">Jan 2026 — Present</span>
+          <span class="stack-chip">Ansys Maxwell</span>
+          <span class="stack-chip">Electromagnetic Actuation</span>
+          <span class="stack-chip">FPCB Design</span>
+          <span class="stack-chip">Microrobotics</span>
+        </div>
+        <div class="build-log">
+          <div class="line"><span class="ic-ok">✓</span> Electromagnetic flapping-wing actuator design and simulation — done</div>
+          <div class="line"><span class="ic-ok">✓</span> FPCB coplanar spiral-coil actuator development — done</div>
+          <div class="line"><span class="ic-ok">✓</span> Prototype achieving &gt;100 mN force, &gt;20 Hz flapping, measurable lift — done</div>
+          <div class="line"><span class="ic-pending">◐</span> Full sub-2g flight-ready integration — in progress</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🎙️ Real-Time Embedded Audio DSP &amp; TinyML Voice Command</div>
+          <div class="project-meta">STM32H753 (Cortex-M7) · WM8960 Audio Codec · Edge Impulse</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Built</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          A low-latency embedded audio pipeline built around a custom WM8960 codec driver, with a
+          voice-command recognition model trained in Edge Impulse and deployed via ST's X-Cube-AI toolchain.
+        </p>
+        <div class="stack-row">
+          <span class="stack-chip">C</span>
+          <span class="stack-chip">STM32 HAL</span>
+          <span class="stack-chip">I2C</span>
+          <span class="stack-chip">I2S</span>
+          <span class="stack-chip">DMA</span>
+          <span class="stack-chip">Edge Impulse SDK</span>
+        </div>
+        <div class="build-log">
+          <div class="line"><span class="ic-ok">✓</span> Custom WM8960 register-level codec driver — done</div>
+          <div class="line"><span class="ic-ok">✓</span> I2C/I2S audio bring-up and signal path — done</div>
+          <div class="line"><span class="ic-ok">✓</span>  DMA ping-pong buffering — in progress</div>
+          <div class="line"><span class="ic-ok">✓</span>  Edge Impulse inference integration — in progress</div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Naugtyninja/Audio-system-with-tinyml-voice-recognition" target="_blank" rel="noopener">⚡ View repo</a>
+          <a href="https://www.youtube.com/watch?v=N6NMJO9_aOo" target="_blank" rel="noopener">▷ Watch demo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🃏 FPGA-Based Blackjack Game</div>
+          <div class="project-meta">DE1-SoC FPGA (ARM Cortex-A9 HPS) · Verilog RTL · Quartus</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Built</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Designed a Blackjack game in Verilog RTL using a modular finite state machine architecture
+          to manage game logic, dealer/player turns, and win conditions on a DE1-SoC FPGA. Integrated
+          peripherals for an LT24 LCD and 7-segment display via direct hardware-level interfacing on
+          the FPGA fabric, and verified design correctness and timing closure through RTL simulation
+          and static timing analysis in Quartus, ensuring real-time game execution and synchronized
+          display output.
+        </p>
+        <div class="stack-row">
+          <span class="stack-chip">Jan — Mar 2026</span>
+          <span class="stack-chip">Verilog RTL</span>
+          <span class="stack-chip">FSM Design</span>
+          <span class="stack-chip">Quartus</span>
+          <span class="stack-chip">LT24 LCD</span>
+          <span class="stack-chip">Static Timing Analysis</span>
+        </div>
+        <div class="build-log">
+          <div class="line"><span class="ic-ok">✓</span> Modular FSM architecture for game logic, turns, and win conditions — done</div>
+          <div class="line"><span class="ic-ok">✓</span> LT24 LCD and 7-segment display hardware integration — done</div>
+          <div class="line"><span class="ic-ok">✓</span> RTL simulation and static timing analysis in Quartus — done</div>
+        </div>
+        <div class="project-links">
+          <a href="https://www.youtube.com/watch?v=bzYWuaPhiJ0" target="_blank" rel="noopener">▷ Watch demo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🤖 Quadrabot &amp; Double-Suspension Design</div>
+          <div class="project-meta">Independent mechanical design projects</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Built</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Designed a self-transforming quadruped robot capable of six terrain-adaptive modes using
+          AI-assisted sensing, Bluetooth control, and servo actuation. Separately, designed an end-to-end
+          double-suspension system, performing stress/strain analysis and calculating caster, camber, and
+          toe angles for optimum handling.
+        </p>
+        <div class="stack-row">
+          <span class="stack-chip">Arduino</span>
+          <span class="stack-chip">Servo Control</span>
+          <span class="stack-chip">SolidWorks</span>
+          <span class="stack-chip">Stress Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="https://www.youtube.com/watch?v=Whi_NVzQj7o" target="_blank" rel="noopener">▷ Watch demo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🏎️ Formula Student Racing — IIT Mandi</div>
+          <div class="project-meta">IIT Mandi Formula Student Team</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Active member of the Formula Student team for four years. Led the end-to-end development
+          of a double unequal wishbone suspension system — conceptualizing the geometry, engineering
+          the components, and optimizing vehicle kinematics to maintain an ideal tire contact patch
+          across all driving conditions.
+        </p>
+        <div class="stack-row">
+          <span class="stack-chip">Dec 2017 — Jun 2021</span>
+          <span class="stack-chip">Suspension Design</span>
+          <span class="stack-chip">Vehicle Kinematics</span>
+          <span class="stack-chip">SolidWorks</span>
+          <span class="stack-chip">Stress Analysis</span>
+        </div>
+        <div class="build-log">
+          <div class="line"><span class="ic-ok">✓</span> Conceptualized double unequal wishbone suspension geometry</div>
+          <div class="line"><span class="ic-ok">✓</span> Engineered full suspension system end-to-end</div>
+          <div class="line"><span class="ic-ok">✓</span> Optimized kinematics for ideal tire contact patch</div>
+          <div class="line"><span class="ic-ok">✓</span> 4 years of active team membership</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--green-soft);">📈</div>
+      <div>
+        <h2>Industry Experience</h2>
+        <div class="sec-sub">Roles I've held</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🧪 Lead Test & Systems Integration Engineer</div>
+          <div class="project-meta">Esmito Solutions</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Led Battery Management System firmware and hardware testing — designed and built
+          Hardware-in-the-Loop (HIL) test benches for BMS validation and ran hands-on hardware
+          debugging across test cycles.
+        </p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">Nov 2022 — Mar 2024</span>
+          <span class="stack-chip">BMS Firmware</span>
+          <span class="stack-chip">HIL Testing</span>
+          <span class="stack-chip">Hardware Debug</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🔋 Testing &amp; Integration Engineer</div>
+          <div class="project-meta">Grinntech Motors and Services</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Owned DVP&amp;R and FMEA testing plans for vehicle-level Li-ion battery integration,
+          connected packs to motor and vehicle electronics over CAN, and led complete AIS 156
+          regulatory certification and documentation — contributing to a 20% reduction in battery losses.
+        </p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">Sep 2021 — Nov 2022</span>
+          <span class="stack-chip">CAN Bus</span>
+          <span class="stack-chip">DVP&amp;R</span>
+          <span class="stack-chip">FMEA</span>
+          <span class="stack-chip">AIS 156</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🔬 R&amp;D Intern</div>
+          <div class="project-meta">Inverted Energy</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Early-stage research and development support.
+        Determined heat generation during charging and discharging of LFP cells. 
+        Conducted thermal modeling of Li-ion cells, with a strong understanding of thermal management strategies. 
+        </p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">Dec 2020 — Feb 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">⚙️ Product Development Intern</div>
+          <div class="project-meta">Drop Technologies</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Short-term product development internship.</p>
+        <p class="project-desc">
+        Worked as a design engineer in an early-stage startup. Assisted in the development of prototypes and test plans for a smart package delivery box. 
+        Performed mechanical design calculations, analysis, and material selection for a product.</p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">Oct 2020 — Nov 2020</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--coral-soft);">🎓</div>
+      <div>
+        <h2>Education</h2>
+        <div class="sec-sub">Where I studied</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🎓 MSc Mechatronics &amp; Robotics Engineering</div>
+          <div class="project-meta">University of Leeds, UK</div>
+        </div>
+        <span class="status-pill pill-progress">📍 Current</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+          Control Systems, Embedded System Design, FPGA/SoC, Aerial Robotics, Medical Robotics. 
+        </p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">2025 — 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <div class="project-title">🏛️ B.Tech, Mechanical Engineering</div>
+          <div class="project-meta">Indian Institute of Technology (IIT), Mandi</div>
+        </div>
+        <span class="status-pill pill-verified">✓ Completed</span>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">
+           Robotics & Control, Battery Management Systems, E-Powertrain, Vehicle Dynamics, Signals & Systems, Thermodynamics, Fluid Mechanics. 
+        </p>
+        <div class="stack-row" style="margin-bottom:0;">
+          <span class="stack-chip">2017 — 2021</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--coral-soft);">🏆</div>
+      <div>
+        <h2>Achievements</h2>
+        <div class="sec-sub">A few things I'm proud of</div>
+      </div>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <span class="cred-emoji">🎯</span>
+        <div>
+          <div class="ctitle">JEE Advanced — Top Percentile</div>
+          <div class="cdesc">Secured admission to IIT Mandi through India's national engineering entrance exam.</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <span class="cred-emoji">🌟</span>
+        <div>
+          <div class="ctitle">INSPIRE Scholarship</div>
+          <div class="cdesc">Merit-based STEM scholarship awarded by the Government of India.</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <span class="cred-emoji">🏎️</span>
+        <div>
+          <div class="ctitle">Formula Student Team — Co-Coordinator</div>
+          <div class="cdesc">Managed technical engineering teams within IIT Mandi's student Formula racing program.</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <span class="cred-emoji">♟️</span>
+        <div>
+          <div class="ctitle">Founder, Chess Community</div>
+          <div class="cdesc">Founded and scaled the institute's official chess community from the ground up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-icon" style="background:var(--blue-soft);">💬</div>
+      <div>
+        <h2>Let's talk</h2>
+        <div class="sec-sub">I'd love to hear from you</div>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:a.nautiyal0298@gmail.com">
+        <span class="cic">📧</span>
+        <div class="clabel">Email</div>
+        <div class="cvalue">a.nautiyal0298@gmail.com</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/aditya-nautiyal/" target="_blank" rel="noopener">
+        <span class="cic">💼</span>
+        <div class="clabel">LinkedIn</div>
+        <div class="cvalue">/in/aditya-nautiyal</div>
+      </a>
+      <a class="contact-card" href="https://github.com/Naugtyninja" target="_blank" rel="noopener">
+        <span class="cic">⚡</span>
+        <div class="clabel">GitHub</div>
+        <div class="cvalue">@Naugtyninja</div>
+      </a>
+      <a class="contact-card" href="tel:+447721568875">
+        <span class="cic">📱</span>
+        <div class="clabel">Phone — UK</div>
+        <div class="cvalue">+44 7721 568875</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span class="foot-text">© 2026 Aditya Nautiyal — made with care</span>
+    <span class="foot-text">Mechatronics · Embedded Systems · Li-ion Battery Engineering</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var MIN_WIDTH = 1300;
+
+  function catmullRom2bezier(points){
+    if(points.length < 2) return '';
+    var d = 'M ' + points[0].x.toFixed(1) + ' ' + points[0].y.toFixed(1) + ' ';
+    for(var i=0; i<points.length-1; i++){
+      var p0 = points[i-1] || points[i];
+      var p1 = points[i];
+      var p2 = points[i+1];
+      var p3 = points[i+2] || p2;
+      var cp1x = p1.x + (p2.x - p0.x)/6;
+      var cp1y = p1.y + (p2.y - p0.y)/6;
+      var cp2x = p2.x - (p3.x - p1.x)/6;
+      var cp2y = p2.y - (p3.y - p1.y)/6;
+      d += 'C ' + cp1x.toFixed(1) + ' ' + cp1y.toFixed(1) + ', ' +
+                   cp2x.toFixed(1) + ' ' + cp2y.toFixed(1) + ', ' +
+                   p2.x.toFixed(1) + ' ' + p2.y.toFixed(1) + ' ';
+    }
+    return d;
+  }
+
+  function initRaceTrack(){
+    var layer = document.getElementById('race-track-layer');
+    var wrapEl = document.querySelector('.wrap');
+    if(!layer || !wrapEl) return;
+
+    var svg = document.getElementById('race-track-svg');
+    var road = document.getElementById('race-road-path');
+    var roadFill = document.getElementById('race-road-fill');
+    var stripe = document.getElementById('race-stripe-path');
+    var car = document.getElementById('race-car');
+
+    var totalLength = 0;
+    var docHeight = 0;
+    var enabled = false;
+
+    var milestones = document.getElementById('race-milestones');
+
+    var FLAG_SVG = '<svg viewBox="0 0 24 26" width="24" height="26" xmlns="http://www.w3.org/2000/svg">' +
+      '<line x1="4" y1="3" x2="4" y2="25" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>' +
+      '<rect x="4" y="3" width="16" height="11" fill="#fff" stroke="var(--ink)" stroke-width="1"/>' +
+      '<rect x="4" y="3" width="4" height="3.7" fill="var(--ink)"/>' +
+      '<rect x="12" y="3" width="4" height="3.7" fill="var(--ink)"/>' +
+      '<rect x="8" y="6.7" width="4" height="3.7" fill="var(--ink)"/>' +
+      '<rect x="16" y="6.7" width="4" height="3.7" fill="var(--ink)"/>' +
+      '<rect x="4" y="10.4" width="4" height="3.6" fill="var(--ink)"/>' +
+      '<rect x="12" y="10.4" width="4" height="3.6" fill="var(--ink)"/>' +
+      '</svg>';
+
+    var FINISH_FLAG_SVG = '<svg viewBox="0 0 28 30" width="28" height="30" xmlns="http://www.w3.org/2000/svg">' +
+      '<line x1="5" y1="3" x2="5" y2="29" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>' +
+      '<rect x="5" y="3" width="19" height="13" fill="#fff" stroke="var(--ink)" stroke-width="1.2"/>' +
+      '<rect x="5" y="3" width="4.75" height="4.3" fill="var(--ink)"/>' +
+      '<rect x="14.5" y="3" width="4.75" height="4.3" fill="var(--ink)"/>' +
+      '<rect x="9.75" y="7.3" width="4.75" height="4.3" fill="var(--ink)"/>' +
+      '<rect x="19.25" y="7.3" width="4.75" height="4.3" fill="var(--ink)"/>' +
+      '<rect x="5" y="11.6" width="4.75" height="4.4" fill="var(--ink)"/>' +
+      '<rect x="14.5" y="11.6" width="4.75" height="4.4" fill="var(--ink)"/>' +
+      '</svg>';
+
+    function build(){
+      if(window.innerWidth < MIN_WIDTH){
+        layer.style.display = 'none';
+        enabled = false;
+        return;
+      }
+      var wrapRect = wrapEl.getBoundingClientRect();
+      var wrapLeftDoc = wrapRect.left + window.scrollX;
+      if(wrapLeftDoc < 150){
+        layer.style.display = 'none';
+        enabled = false;
+        return;
+      }
+
+      layer.style.display = 'block';
+      enabled = true;
+
+      docHeight = document.documentElement.scrollHeight;
+      var rightX = wrapLeftDoc - 40;
+      var leftX = Math.max(24, rightX - 86);
+      var baseX = (leftX + rightX) / 2;
+
+      svg.setAttribute('width', String(wrapLeftDoc));
+      svg.setAttribute('height', String(docHeight));
+      svg.style.width = wrapLeftDoc + 'px';
+      svg.style.height = docHeight + 'px';
+      layer.style.height = docHeight + 'px';
+
+      var sectionIds = ['about','skills','projects','experience','education'];
+      var pts = [{x: baseX, y: 30}];
+      milestones.innerHTML = '';
+      sectionIds.forEach(function(id, i){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var r = el.getBoundingClientRect();
+        var y = r.top + window.scrollY + r.height * 0.4;
+        var x = (i % 2 === 0) ? leftX : rightX;
+        pts.push({x: x, y: y});
+
+        var marker = document.createElement('div');
+        marker.className = 'milestone';
+        marker.style.left = x + 'px';
+        marker.style.top = y + 'px';
+        marker.innerHTML = FLAG_SVG;
+        milestones.appendChild(marker);
+      });
+
+      var contactEl = document.getElementById('contact');
+      if(contactEl){
+        var cRect = contactEl.getBoundingClientRect();
+        var contactY = cRect.top + window.scrollY + 80;
+        pts.push({x: baseX, y: contactY - 100});
+        pts.push({x: wrapLeftDoc + 4, y: contactY});
+
+        var finish = document.createElement('div');
+        finish.className = 'milestone milestone-finish';
+        finish.style.left = (wrapLeftDoc + 4) + 'px';
+        finish.style.top = contactY + 'px';
+        finish.innerHTML = FINISH_FLAG_SVG;
+        milestones.appendChild(finish);
+      }
+
+      var d = catmullRom2bezier(pts);
+      road.setAttribute('d', d);
+      roadFill.setAttribute('d', d);
+      stripe.setAttribute('d', d);
+
+      totalLength = road.getTotalLength();
+      updateCar();
+    }
+
+    function updateCar(){
+      if(!enabled || !totalLength) return;
+      var scrollable = docHeight - window.innerHeight;
+      var frac = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+      var len = frac * totalLength;
+      var pt = road.getPointAtLength(len);
+      var pt2 = road.getPointAtLength(Math.min(totalLength, len + 1));
+      var angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI + 90;
+      car.style.transform = 'translate(' + (pt.x - 18).toFixed(1) + 'px,' + (pt.y - 29).toFixed(1) + 'px) rotate(' + angle.toFixed(1) + 'deg)';
+    }
+
+    var scrollTicking = false;
+    window.addEventListener('scroll', function(){
+      if(!scrollTicking){
+        window.requestAnimationFrame(function(){ updateCar(); scrollTicking = false; });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    var resizeTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 150);
+    });
+
+    build();
+    window.addEventListener('load', build);
+    setTimeout(build, 400);
+    setTimeout(build, 1200);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initRaceTrack);
+  } else {
+    initRaceTrack();
+  }
+})();
+</script>
+
+</body>
+</html>
