@@ -75,8 +75,8 @@
     background:linear-gradient(180deg, transparent 58%, var(--yellow) 58%);
     padding:0 2px;
   }
-  .hero-sub{margin-top:24px; max-width:560px; font-size:17px; color:var(--ink-soft); line-height:1.65;}
-  .-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .hero-sub{margin-top:24px; max-width:560px; font-size:17px; color:var(--ink-soft); line-height:1.65; text-align:justify;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
   .btn{
     font-family:var(--sans); font-weight:700; font-size:14.5px;
     padding:13px 24px; border-radius:30px; text-decoration:none;
@@ -109,7 +109,8 @@
   /* ---------- about ---------- */
   .about-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:start;}
   @media (max-width:760px){.about-grid{grid-template-columns:1fr; gap:32px;}}
-  .about-text p{color:var(--ink-soft); font-size:16px; margin-bottom:16px; max-width:480px;}
+  .about-text p{color:var(--ink-soft); font-size:16px; line-height:1.7; margin-bottom:20px; max-width:480px; text-align:justify;}
+  .about-text p:last-child{margin-bottom:0;}
   .about-text p strong{color:var(--ink); font-weight:700;}
 
   .fact-card{
@@ -169,8 +170,8 @@
     .project-body{flex-direction:column;}
     .project-visual{width:100%; margin-top:4px;}
   }
-  .project-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px;}
-  .project-list{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px; padding-left:20px;}
+  .project-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px; text-align:justify;}
+  .project-list{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px; padding-left:20px; text-align:justify;}
   .project-list li{margin-bottom:10px;}
   .project-list li:last-child{margin-bottom:0;}
   .project-list li::marker{color:var(--coral); font-weight:700;}
@@ -263,7 +264,7 @@
   }
   .cred-emoji{font-size:24px; flex-shrink:0;}
   .cred-card .ctitle{font-weight:700; font-size:15px; color:var(--ink); margin-bottom:4px;}
-  .cred-card .cdesc{font-size:13px; color:var(--ink-faint); line-height:1.55;}
+  .cred-card .cdesc{font-size:13px; color:var(--ink-faint); line-height:1.55; text-align:justify;}
 
   /* ---------- contact ---------- */
   .contact-grid{display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;}
@@ -372,13 +373,13 @@
   </div>
 </div>
 
-<header class="" id="top">
-  <div class="-blob blob1"></div>
-  <div class="-blob blob2"></div>
-  <div class="wrap -inner">
+<header class="hero" id="top">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="wrap hero-inner">
     <div class="eyebrow"><span class="wave">👋</span> Mechatronics & Embedded Systems Engineer</div>
-    <h1>Engineer at the intersection of <span class="hl">Embedded and Mechanical systems.</span></h1>
-    <p class="-sub">
+    <h1>Engineer at the intersection of <span class="hl">embedded systems and intelligent hardware.</span></h1>
+    <p class="hero-sub">
       I work across embedded, and mechanical systems — from
       register level drivers to larger EVs battery packs.
       
@@ -411,7 +412,7 @@
         <p>My background spans full-vehicle battery integration in EV startups, and embedded firmware development for microcontrollers, and mechanical design and analysis.</p>
         <p>I'm currently completing an MSc in Mechatronics & Robotics Engineering at the
         <strong>University of Leeds</strong>, building on a B.Tech in Mechanical Engineering from
-        <strong>IIT Mandi</strong>
+        <strong>IIT Mandi</strong>.</p>
       </div>
       <div class="fact-card">
         <div class="fact-row"><span class="fact-k">Based in</span><span class="fact-v">UK / India</span></div>
