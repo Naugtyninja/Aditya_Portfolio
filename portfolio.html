@@ -158,7 +158,17 @@
   .pill-verified{background:var(--green-soft); color:#1F7A56;}
   .pill-progress{background:var(--yellow-soft); color:#A6750A;}
 
-  .project-body{padding:0 28px 28px;}
+  .project-body{padding:0 28px 28px; display:flex; gap:22px; align-items:flex-start;}
+  .project-content{flex:1; min-width:0;}
+  .project-visual{
+    width:112px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    padding-top:6px;
+  }
+  .project-visual svg{display:block; overflow:visible;}
+  @media (max-width:760px){
+    .project-body{flex-direction:column;}
+    .project-visual{width:100%; margin-top:4px;}
+  }
   .project-desc{color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:18px;}
   .build-log{
     background:#FBF6EC; border:1.5px solid var(--border); border-radius:14px;
@@ -177,6 +187,60 @@
   .project-links a:hover, .project-links a:focus-visible{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--blue); background:var(--blue-soft);}
   .stack-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
   .stack-chip{font-size:12.5px; font-weight:600; color:var(--ink-soft); border:1.5px solid var(--border); border-radius:20px; padding:5px 12px;}
+
+  /* ---------- project visual animations ---------- */
+  .bee-fly{animation:bee-updown 2.2s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 50%;}
+  @keyframes bee-updown{
+    0%,100%{transform:translateY(6px);}
+    50%{transform:translateY(-22px);}
+  }
+  .bee-wing{transform-box:fill-box; transform-origin:50% 50%; animation:bee-wing-flap 0.12s ease-in-out infinite alternate;}
+  @keyframes bee-wing-flap{ from{transform:scaleY(1);} to{transform:scaleY(0.35);} }
+
+  .boy-bob{animation:boy-head-bob 1.6s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 100%;}
+  @keyframes boy-head-bob{
+    0%,100%{transform:rotate(-5deg) translateY(0);}
+    50%{transform:rotate(5deg) translateY(-3px);}
+  }
+  .music-note{opacity:0; animation:note-float 2.6s ease-in infinite;}
+  .music-note.n2{animation-delay:0.9s;}
+  .music-note.n3{animation-delay:1.8s;}
+  @keyframes note-float{
+    0%{opacity:0; transform:translateY(0) scale(0.8);}
+    15%{opacity:1;}
+    85%{opacity:0.6;}
+    100%{opacity:0; transform:translateY(-34px) scale(1.05);}
+  }
+
+  .card-face{opacity:0; animation:card-cycle 3.6s ease-in-out infinite;}
+  .card-face.f2{animation-delay:1.2s;}
+  .card-face.f3{animation-delay:2.4s;}
+  @keyframes card-cycle{
+    0%,6%{opacity:0;}
+    10%,26%{opacity:1;}
+    32%,100%{opacity:0;}
+  }
+
+  .robot-turn{animation:robot-orient 5s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 50%;}
+  @keyframes robot-orient{
+    0%{transform:rotate(0deg);}
+    20%{transform:rotate(90deg);}
+    40%{transform:rotate(180deg);}
+    60%{transform:rotate(270deg);}
+    80%{transform:rotate(360deg);}
+    100%{transform:rotate(360deg);}
+  }
+
+  .susp-wheel{animation:susp-travel 1.8s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
+  @keyframes susp-travel{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(9px);}
+  }
+  .susp-damper{animation:susp-damper-squeeze 1.8s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 0%;}
+  @keyframes susp-damper-squeeze{
+    0%,100%{transform:scaleY(1);}
+    50%{transform:scaleY(0.82);}
+  }
 
   /* ---------- achievements ---------- */
   .cred-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
@@ -410,6 +474,7 @@
         <span class="status-pill pill-progress">📍 Ongoing</span>
       </div>
       <div class="project-body">
+        <div class="project-content">
         <p class="project-desc">
           Designing and simulating an electromagnetic flapping-wing actuator for a sub-2g microrobot
           using Ansys Maxwell. Developed a flexible PCB (FPCB) coplanar spiral-coil actuator optimized
@@ -429,6 +494,23 @@
           <div class="line"><span class="ic-ok">✓</span> Prototype achieving &gt;100 mN force, &gt;20 Hz flapping, measurable lift — done</div>
           <div class="line"><span class="ic-pending">◐</span> Full sub-2g flight-ready integration — in progress</div>
         </div>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <svg viewBox="0 0 100 130" width="92" height="118" xmlns="http://www.w3.org/2000/svg">
+            <g class="bee-fly">
+              <ellipse class="bee-wing" cx="36" cy="58" rx="13" ry="8" fill="var(--blue-soft)" stroke="var(--ink)" stroke-width="1.5" transform="rotate(-18 36 58)"/>
+              <ellipse class="bee-wing" cx="64" cy="58" rx="13" ry="8" fill="var(--blue-soft)" stroke="var(--ink)" stroke-width="1.5" transform="rotate(18 64 58)"/>
+              <ellipse cx="50" cy="66" rx="20" ry="14" fill="var(--yellow)" stroke="var(--ink)" stroke-width="2"/>
+              <path d="M33 60 Q50 55 67 60" stroke="var(--ink)" stroke-width="3" fill="none"/>
+              <path d="M32 68 Q50 74 68 68" stroke="var(--ink)" stroke-width="3" fill="none"/>
+              <circle cx="50" cy="52" r="8" fill="var(--ink)"/>
+              <circle cx="47" cy="50" r="1.6" fill="#fff"/>
+              <circle cx="53" cy="50" r="1.6" fill="#fff"/>
+              <path d="M43 44 L38 38" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M57 44 L62 38" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
 
@@ -441,6 +523,7 @@
         <span class="status-pill pill-verified">✓ Built</span>
       </div>
       <div class="project-body">
+        <div class="project-content">
         <p class="project-desc">
           A low-latency embedded audio pipeline built around a custom WM8960 codec driver, with a
           voice-command recognition model trained in Edge Impulse and deployed via ST's X-Cube-AI toolchain.
@@ -463,6 +546,23 @@
           <a href="https://github.com/Naugtyninja/Audio-system-with-tinyml-voice-recognition" target="_blank" rel="noopener">⚡ View repo</a>
           <a href="https://www.youtube.com/watch?v=N6NMJO9_aOo" target="_blank" rel="noopener">▷ Watch demo</a>
         </div>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <svg viewBox="0 0 100 130" width="92" height="118" xmlns="http://www.w3.org/2000/svg">
+            <text class="music-note n1" x="14" y="70" font-size="16" fill="var(--green)">♪</text>
+            <text class="music-note n2" x="78" y="80" font-size="14" fill="var(--coral)">♫</text>
+            <text class="music-note n3" x="20" y="40" font-size="13" fill="var(--blue)">♩</text>
+            <g class="boy-bob">
+              <path d="M22 60 A28 28 0 0 1 78 60" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+              <rect x="14" y="58" width="12" height="18" rx="4" fill="var(--blue)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="74" y="58" width="12" height="18" rx="4" fill="var(--blue)" stroke="var(--ink)" stroke-width="2"/>
+              <circle cx="50" cy="66" r="24" fill="var(--coral-soft)" stroke="var(--ink)" stroke-width="2"/>
+              <circle cx="42" cy="63" r="2.2" fill="var(--ink)"/>
+              <circle cx="58" cy="63" r="2.2" fill="var(--ink)"/>
+              <path d="M41 76 Q50 82 59 76" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
 
@@ -475,6 +575,7 @@
         <span class="status-pill pill-verified">✓ Built</span>
       </div>
       <div class="project-body">
+        <div class="project-content">
         <p class="project-desc">
           Designed a Blackjack game in Verilog RTL using a modular finite state machine architecture
           to manage game logic, dealer/player turns, and win conditions on a DE1-SoC FPGA. Integrated
@@ -499,22 +600,42 @@
         <div class="project-links">
           <a href="https://www.youtube.com/watch?v=bzYWuaPhiJ0" target="_blank" rel="noopener">▷ Watch demo</a>
         </div>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <svg viewBox="0 0 110 100" width="102" height="92" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="76" rx="50" ry="20" fill="var(--green)" stroke="var(--ink)" stroke-width="2"/>
+            <ellipse cx="55" cy="76" rx="38" ry="13" fill="none" stroke="var(--green-soft)" stroke-width="1.5" opacity="0.6"/>
+            <g>
+              <rect x="24" y="14" width="26" height="36" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="2"/>
+              <text class="card-face f1" x="37" y="38" font-size="13" text-anchor="middle" font-weight="700" fill="var(--ink)">A♠</text>
+              <text class="card-face f2" x="37" y="38" font-size="13" text-anchor="middle" font-weight="700" fill="var(--coral)">K♥</text>
+              <text class="card-face f3" x="37" y="38" font-size="12" text-anchor="middle" font-weight="700" fill="var(--ink)">10♣</text>
+            </g>
+            <g>
+              <rect x="60" y="14" width="26" height="36" rx="3" fill="#fff" stroke="var(--ink)" stroke-width="2"/>
+              <text class="card-face f2" x="73" y="38" font-size="13" text-anchor="middle" font-weight="700" fill="var(--coral)">Q♦</text>
+              <text class="card-face f3" x="73" y="38" font-size="13" text-anchor="middle" font-weight="700" fill="var(--ink)">7♠</text>
+              <text class="card-face f1" x="73" y="38" font-size="13" text-anchor="middle" font-weight="700" fill="var(--ink)">J♣</text>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-head">
         <div>
-          <div class="project-title">🤖 Quadrabot &amp; Double-Suspension Design</div>
+          <div class="project-title">🤖 Quadrabot</div>
           <div class="project-meta">Independent mechanical design projects</div>
         </div>
         <span class="status-pill pill-verified">✓ Built</span>
       </div>
       <div class="project-body">
+        <div class="project-content">
         <p class="project-desc">
-          Built a quadruped robotic platform featuring inverse kinematics, gait generation, and real-time motion control. 
-          Implemented servo calibration, trajectory control, and multi-mode locomotion using Arduino. 
-          Demonstrated adaptive terrain navigation across six operational gait modes.
+          Built a quadruped robotic platform featuring inverse kinematics, gait generation, and real-time
+          motion control. Implemented servo calibration, trajectory control, and multi-mode locomotion
+          using Arduino. Demonstrated adaptive terrain navigation across six operational gait modes.
         </p>
         <div class="stack-row">
           <span class="stack-chip">Arduino</span>
@@ -524,6 +645,27 @@
         </div>
         <div class="project-links">
           <a href="https://www.youtube.com/watch?v=Whi_NVzQj7o" target="_blank" rel="noopener">▷ Watch demo</a>
+        </div>
+        </div>
+        <div class="project-visual" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="88" height="88" xmlns="http://www.w3.org/2000/svg">
+            <g class="robot-turn">
+              <line x1="35" y1="42" x2="20" y2="30" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="35" y1="58" x2="20" y2="70" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="65" y1="42" x2="80" y2="30" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="65" y1="58" x2="80" y2="70" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+              <circle cx="20" cy="30" r="3" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="20" cy="70" r="3" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="80" cy="30" r="3" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="80" cy="70" r="3" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+              <rect x="33" y="34" width="34" height="32" rx="6" fill="var(--blue)" stroke="var(--ink)" stroke-width="2.5"/>
+              <circle cx="43" cy="48" r="2.6" fill="#fff"/>
+              <circle cx="57" cy="48" r="2.6" fill="#fff"/>
+              <path d="M42 58 Q50 62 58 58" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <line x1="50" y1="34" x2="50" y2="24" stroke="var(--ink)" stroke-width="2.5"/>
+              <circle cx="50" cy="21" r="3.5" fill="var(--coral)" stroke="var(--ink)" stroke-width="1.5"/>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -537,6 +679,20 @@
         <span class="status-pill pill-verified">✓ Completed</span>
       </div>
       <div class="project-body">
+        <div class="project-visual" aria-hidden="true">
+          <svg viewBox="0 0 100 110" width="90" height="98" xmlns="http://www.w3.org/2000/svg">
+            <line x1="18" y1="18" x2="18" y2="70" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="18" y1="20" x2="55" y2="34" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+            <g class="susp-wheel">
+              <line x1="18" y1="55" x2="55" y2="65" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="55" cy="65" r="3.5" fill="var(--ink)"/>
+              <ellipse cx="74" cy="60" rx="12" ry="26" fill="none" stroke="var(--ink)" stroke-width="5"/>
+              <ellipse cx="74" cy="60" rx="5" ry="11" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1.5"/>
+            </g>
+            <line class="susp-damper" x1="34" y1="24" x2="46" y2="60" stroke="var(--coral)" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="project-content">
         <p class="project-desc">
           Active member of the Formula Student team for four years. Led the end-to-end development
           of a double unequal wishbone suspension system — conceptualizing the geometry, engineering
@@ -555,6 +711,7 @@
           <div class="line"><span class="ic-ok">✓</span> Engineered full suspension system end-to-end</div>
           <div class="line"><span class="ic-ok">✓</span> Optimized kinematics for ideal tire contact patch</div>
           <div class="line"><span class="ic-ok">✓</span> 4 years of active team membership</div>
+        </div>
         </div>
       </div>
     </div>
